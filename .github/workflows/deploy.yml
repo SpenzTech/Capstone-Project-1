@@ -1,0 +1,40 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+      - ProjectAzubi
+
+jobs:
+  deploy:
+    name: Deploy to EC2 (capstone-web-server)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            # Navigate to the app directory
+            cd /var/www/html
+
+            # Pull latest code from main branch
+            git fetch origin main
+            git reset --hard origin/main
+
+            # Set correct permissions for Nginx
+            sudo chown -R www-data:www-data /var/www/html
+            sudo chmod -R 755 /var/www/html
+
+            # Reload Nginx to serve updated files
+            sudo systemctl reload nginx
+
+            echo "✅ Deployment complete — $(date)"
