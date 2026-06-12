@@ -218,7 +218,7 @@ Every push to `main` deploys to production with zero manual steps.
 
 ## 🧗 Challenges Faced
 
-- **ACM SSL certificate did not validate within project timeframe** — We requested an SSL/TLS certificate via AWS Certificate Manager but validation did not complete before our deadline. As a mitigation we used CloudFront's built-in HTTPS on the default `.cloudfront.net` domain, which provides full SSL encryption without requiring a custom domain certificate. In a production environment we would complete DNS validation to attach a custom domain certificate.
+- **ACM SSL certificate did not validate within project timeframe** — An SSL/TLS certificate was requested via AWS Certificate Manager but validation did not complete before the deadline. As a mitigation CloudFront's built-in HTTPS on the default `.cloudfront.net` domain was used, which provides full SSL encryption without requiring a custom domain certificate. In a production environment we would complete DNS validation to attach a custom domain certificate.
 - ALB health check misconfiguration (resolved by fixing target group port)
 - IAM permission issues during initial setup
 - Security group access restrictions blocking deployment SSH
