@@ -197,7 +197,7 @@ Every push to `main` deploys to production with zero manual steps.
 
 ## 🌐 Live Deployment
 
-- **CloudFront URL:** `https://your-cloudfront-url.cloudfront.net`
+- **CloudFront URL:** `https://daxfre6xbfeg2.cloudfront.net`
 - Application accessible over HTTPS globally via CloudFront CDN
 
 ---
